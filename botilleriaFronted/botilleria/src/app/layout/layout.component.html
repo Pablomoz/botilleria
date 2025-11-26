@@ -1,0 +1,43 @@
+<mat-sidenav-container class="container">
+
+  <mat-sidenav mode="side" opened class="sidenav">
+
+    <h2 class="logo">Botillería Guerra Gatica Solutions</h2>
+
+    <button mat-button routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+
+    <button mat-button routerLink="/productos">
+      <mat-icon>shopping_bag</mat-icon> Productos
+    </button>
+
+    <button mat-button routerLink="/pos">
+      <mat-icon>point_of_sale</mat-icon> Punto de Venta
+    </button>
+
+    <button mat-button routerLink="/compras">
+      <mat-icon>inventory_2</mat-icon> Compras
+    </button>
+
+    <button mat-button routerLink="/proveedores">
+      <mat-icon>local_shipping</mat-icon> Proveedores
+    </button>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar color="primary">
+      <span>Panel de Control</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/login">Salir</button>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
