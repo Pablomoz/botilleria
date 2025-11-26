@@ -38,6 +38,7 @@ export class ProductosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+      console.log("🟣 ngOnInit ejecutado");
     this.cargarProductos();
   }
 

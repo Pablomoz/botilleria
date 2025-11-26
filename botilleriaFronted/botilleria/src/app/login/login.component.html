@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-box">
+
+    <h2>Iniciar Sesión</h2>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="usuario@correo.cl">
+      <span class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        Ingresa un correo válido
+      </span>
+
+      <label>Contraseña</label>
+      <input type="password" formControlName="password" placeholder="********">
+      <span class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        Ingresa tu contraseña
+      </span>
+
+      <button type="submit" [disabled]="cargando">Entrar</button>
+
+      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    </form>
+
+  </div>
+</div>

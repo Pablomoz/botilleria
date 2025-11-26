@@ -3,6 +3,12 @@ import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
   {
+      
+    path: 'login',
+    loadComponent: () => import('./login/login.component')
+      .then(m => m.LoginComponent)
+  },
+  {
     path: '',
     component: LayoutComponent,
     children: [
