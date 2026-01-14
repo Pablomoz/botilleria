@@ -7,26 +7,19 @@ import { tap, Observable, map } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:5013/api/auth'; // AJÚSTALO A TU BACKEND
+  private apiUrl = 'http://localhost:5013/api/'; // AJÚSTALO A TU BACKEND
 
   constructor(private http: HttpClient) { }
 
-  login(data: { email: string, password: string }): Observable<boolean> {
-    return this.http.post<any>(`${this.apiUrl}/login`, data).pipe(
-      tap(resp => {
-        if (resp.token) {
-          localStorage.setItem('token', resp.token);
-        }
-      }),
-      map(resp => !!resp.token)
-    );
-  }
+ValidarUsuario(data: { email: string; password: string }) {
+  return this.http.post(`${this.apiUrl}Login/ValidarUsuario`, data);
+}
 
-  logout() {
-    localStorage.removeItem('token');
-  }
+logout() {
+  localStorage.removeItem('token');
+}
 
-  isLogged(): boolean {
-    return !!localStorage.getItem('token');
-  }
+isLogged(): boolean {
+  return !!localStorage.getItem('token');
+}
 }

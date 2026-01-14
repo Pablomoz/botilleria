@@ -1,0 +1,169 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+}
+
+.welcome-card {
+  text-align: center;
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  color: white;
+  max-width: 800px;
+  width: 100%;
+}
+
+.logo-section {
+  margin-bottom: 15px;
+}
+
+.logo-icon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
+  color: #ffca28;
+}
+
+.welcome-title {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.version-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px 15px;
+  border-radius: 12px;
+  transition: transform 0.3s, background 0.3s;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.stat-card mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+}
+
+.stat-card.warning mat-icon {
+  color: #ffca28;
+}
+
+.stat-card.alert {
+  background: rgba(255, 87, 34, 0.3);
+}
+
+.stat-card.alert mat-icon {
+  color: #ff5722;
+}
+
+.stat-card.active mat-icon {
+  color: #69f0ae;
+}
+
+.stat-card.money mat-icon {
+  color: #69f0ae;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.quick-access {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quick-access h3 {
+  margin: 0 0 20px 0;
+  font-weight: 400;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.quick-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 25px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.quick-btn mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.quick-btn span {
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .welcome-card {
+    padding: 30px 20px;
+  }
+
+  .welcome-title {
+    font-size: 1.6rem;
+  }
+}

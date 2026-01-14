@@ -2,13 +2,19 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
+
   {
-      
     path: 'login',
     loadComponent: () => import('./login/login.component')
       .then(m => m.LoginComponent)
   },
-  {
+  { 
+      path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  
+ {
     path: '',
     component: LayoutComponent,
     children: [
@@ -17,7 +23,6 @@ export const routes: Routes = [
       { path: 'pos', loadComponent: () => import('./pos/pos.component').then(m => m.PosComponent) },
       { path: 'compras', loadComponent: () => import('./compras/compras.component').then(m => m.ComprasComponent) },
       { path: 'proveedores', loadComponent: () => import('./proveedores/proveedores.component').then(m => m.ProveedoresComponent) },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
 ];

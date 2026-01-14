@@ -37,8 +37,12 @@ export class ProductoDialogComponent {
       nombre: ['', Validators.required],
       categoria: ['', Validators.required],
       precioVenta: [0, [Validators.required, Validators.min(1)]],
+      costoCompra: [0, [Validators.required, Validators.min(1)]],
       stock: [0, Validators.required],
-      stockCritico: [0, Validators.required]
+      stockCritico: [0, Validators.required],
+       codigoBarra: [null],
+       fechaVencimiento: [null],
+       activo: [true]
     });
 
     if (data) {
@@ -48,20 +52,20 @@ export class ProductoDialogComponent {
   }
 
   guardar() {
-    if (this.form.invalid) return;
+  if (this.form.invalid) return;
 
-    const producto = this.form.value as Producto;
+  const producto = this.form.value as Producto;
 
-    if (producto.idProducto === 0) {
-      this.productoService.crear(producto).subscribe({
-        next: () => this.dialogRef.close(true)
-      });
-    } else {
-      this.productoService.actualizar(producto.idProducto, producto).subscribe({
-        next: () => this.dialogRef.close(true)
-      });
-    }
+  if (producto.idProducto === 0) {
+    this.productoService.crear(producto).subscribe({
+      next: () => this.dialogRef.close(true)
+    });
+  } else {
+    this.productoService.editar(producto).subscribe({
+      next: () => this.dialogRef.close(true)
+    });
   }
+}
 
   cerrar() {
     this.dialogRef.close(false);

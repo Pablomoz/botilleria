@@ -3,7 +3,7 @@
 
     <h2>Iniciar Sesión</h2>
 
-    <form [formGroup]="form" (ngSubmit)="login()">
+    <form [formGroup]="form" (ngSubmit)="ValidarUsuario()">
 
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="usuario@correo.cl">
@@ -18,10 +18,25 @@
       </span>
 
       <button type="submit" [disabled]="cargando">Entrar</button>
+ <!-- ❗❗ Si el usuario no existe, aparece este mensaje -->
+      <p class="error" *ngIf="usuarioNoExiste">
+        El usuario no existe. ¿Deseas crear tu contraseña?
+      </p>
 
+      <!-- ❗❗ Botón para crear contraseña -->
+      <button
+        *ngIf="usuarioNoExiste"
+        type="button"
+        (click)="CrearCuenta()"
+      >
+        Crear Contraseña
+      </button>
+
+      <!-- Mensajes de error normales -->
       <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
 
     </form>
 
   </div>
 </div>
+     

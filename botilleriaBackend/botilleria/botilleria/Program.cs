@@ -1,10 +1,11 @@
 using botilleria.Intefaces;
 using botilleria.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ==========================
-// 1. Registrar configuración
+// 1. Registrar configuraciï¿½n
 // ==========================
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
@@ -29,12 +30,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // ==========================
-// 4. Inyección de dependencias
+// 4. Inyecciï¿½n de dependencias
 // ==========================
 builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IDescargaPdfService, DescargaPdfService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IVentaService, VentaService>();
+builder.Services.AddScoped<IProveedorService, ProveedorService>();
+builder.Services.AddScoped<ICompraService, CompraService>();
 
 // ==========================
-// 5. Construir la aplicación
+// 5. Construir la aplicaciï¿½n
 // ==========================
 var app = builder.Build();
 
@@ -47,7 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ACTIVAR CORS AQUÍ
+// ACTIVAR CORS AQUï¿½
 app.UseCors("AllowAngular");
 
 app.UseHttpsRedirection();

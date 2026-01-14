@@ -7,8 +7,8 @@ namespace botilleria.Intefaces
         List<Producto> Listar();
         Producto? ObtenerPorId(int id);
         bool Guardar(Producto modelo);   // insertar o actualizar
-        bool Eliminar(int id);
-        List<Producto> ListarCriticos();
+        Task<bool> EliminarProducto(int IdProducto);
+       Task<bool>EditarProducto(Producto modelo);
 
     }
 }

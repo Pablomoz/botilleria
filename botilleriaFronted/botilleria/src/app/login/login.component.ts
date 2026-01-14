@@ -28,21 +28,52 @@ export class LoginComponent {
     });
   }
 
-  login() {
-    if (this.form.invalid) return;
+  usuarioNoExiste = false;
 
-    this.cargando = true;
-    this.errorMsg = '';
+ValidarUsuario() {
+  console.log("➡️ Método ValidarUsuario() fue llamado");
 
-    this.authService.login(this.form.value).subscribe({
-      next: ok => {
+  this.cargando = true;
+  const datos = this.form.value;
+
+  console.log("➡️ Datos enviados al backend:", datos);
+
+  this.authService.ValidarUsuario(datos).subscribe({
+    next: (resp: any) => {
+      console.log("➡️ Respuesta del backend:", resp);
+
+      if (resp === "NO_EXISTE") {
+        this.usuarioNoExiste = true;
+        this.errorMsg = "";
         this.cargando = false;
-        if (ok) this.router.navigate(['/dashboard']);
-      },
-      error: () => {
-        this.cargando = false;
-        this.errorMsg = 'Usuario o contraseña incorrectos';
+        return;
       }
-    });
-  }
+
+      if (resp === "INCORRECTO") {
+        this.errorMsg = "Contraseña incorrecta";
+        this.cargando = false;
+        return;
+      }
+
+      if (resp === true) {
+        this.router.navigate(['/dashboard']);
+      }
+
+      this.cargando = false;
+    },
+    error: (err) => {
+      console.log("❌ ERROR:", err);
+      this.errorMsg = "Error en el servidor";
+      this.cargando = false;
+    }
+  });
+}
+
+
+
+CrearCuenta() {
+  const email = this.form.get('email')?.value;
+
+  this.router.navigate(['/crear-cuenta'], { queryParams: { email } });
+}
 }

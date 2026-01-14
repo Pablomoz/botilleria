@@ -1,1 +1,54 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <div class="welcome-card">
+    <div class="logo-section">
+      <mat-icon class="logo-icon">liquor</mat-icon>
+    </div>
+    <h1 class="welcome-title">Bienvenido a la Botillería</h1>
+    <span class="version-badge">versión 1.0</span>
+
+    <div class="stats-grid">
+      <div class="stat-card" routerLink="/productos">
+        <mat-icon>inventory_2</mat-icon>
+        <span class="stat-value">{{ totalProductos }}</span>
+        <span class="stat-label">Productos</span>
+      </div>
+      <div class="stat-card active">
+        <mat-icon>check_circle</mat-icon>
+        <span class="stat-value">{{ productosActivos }}</span>
+        <span class="stat-label">Activos</span>
+      </div>
+      <div class="stat-card warning" [class.alert]="productosStockCritico > 0">
+        <mat-icon>warning</mat-icon>
+        <span class="stat-value">{{ productosStockCritico }}</span>
+        <span class="stat-label">Stock Crítico</span>
+      </div>
+      <div class="stat-card money">
+        <mat-icon>attach_money</mat-icon>
+        <span class="stat-value">{{ valorInventario | currency:'CLP':'symbol-narrow':'1.0-0' }}</span>
+        <span class="stat-label">Valor Inventario</span>
+      </div>
+    </div>
+
+    <div class="quick-access">
+      <h3>Acceso Rápido</h3>
+      <div class="quick-buttons">
+        <button class="quick-btn" routerLink="/productos">
+          <mat-icon>inventory_2</mat-icon>
+          <span>Productos</span>
+        </button>
+        <button class="quick-btn" routerLink="/pos">
+          <mat-icon>point_of_sale</mat-icon>
+          <span>POS</span>
+        </button>
+        <button class="quick-btn" routerLink="/compras">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Compras</span>
+        </button>
+        <button class="quick-btn" routerLink="/proveedores">
+          <mat-icon>local_shipping</mat-icon>
+          <span>Proveedores</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

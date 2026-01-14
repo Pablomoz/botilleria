@@ -6,7 +6,13 @@
   </button>
 </div>
 
-<table mat-table [dataSource]="productos" class="mat-elevation-z8">
+<mat-form-field class="buscador" appearance="outline">
+  <mat-label>Buscar producto</mat-label>
+  <input matInput (keyup)="filtrar($event)" placeholder="Nombre, categoría...">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<table mat-table [dataSource]="productosFiltrados" class="mat-elevation-z8">
 
   <ng-container matColumnDef="nombre">
     <th mat-header-cell *matHeaderCellDef> Nombre </th>
@@ -21,6 +27,11 @@
   <ng-container matColumnDef="precioVenta">
     <th mat-header-cell *matHeaderCellDef> Precio </th>
     <td mat-cell *matCellDef="let p"> ${{ p.precioVenta }} </td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="costoCompra">
+    <th mat-header-cell *matHeaderCellDef> Costo Compra </th>
+    <td mat-cell *matCellDef="let p"> ${{ p.costoCompra }} </td>
   </ng-container>
 
   <ng-container matColumnDef="stock">
@@ -46,6 +57,9 @@
       <button mat-icon-button color="warn" (click)="eliminar(p)">
         <mat-icon>delete</mat-icon>
       </button>
+       <button mat-icon-button color="warn" (click)="descargarPDF(p)">
+  <mat-icon>picture_as_pdf</mat-icon>
+</button>
     </td>
   </ng-container>
 

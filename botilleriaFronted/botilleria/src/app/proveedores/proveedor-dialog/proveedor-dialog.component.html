@@ -1,1 +1,42 @@
-<p>proveedor-dialog works!</p>
+<h2 mat-dialog-title>{{ esEditar ? 'Editar' : 'Nuevo' }} Proveedor</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>RUT</mat-label>
+      <input matInput formControlName="rut" required placeholder="12.345.678-9">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono" placeholder="+56 9 1234 5678">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="direccion">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contacto</mat-label>
+      <input matInput formControlName="contacto" placeholder="Nombre del contacto">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()" [disabled]="form.invalid">
+    {{ esEditar ? 'Actualizar' : 'Guardar' }}
+  </button>
+</mat-dialog-actions>

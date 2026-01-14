@@ -10,7 +10,7 @@
         public decimal CostoCompra { get; set; }
         public int Stock { get; set; }
         public int StockCritico { get; set; }
-        public string CodigoBarra { get; set; }
+        public string? CodigoBarra { get; set; }
         public DateTime? FechaVencimiento { get; set; }
         public bool Activo { get; set; }
     }

@@ -1,0 +1,159 @@
+.pos-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 100px);
+}
+
+.panel-busqueda {
+  flex: 1;
+  min-width: 400px;
+}
+
+.panel-carrito {
+  flex: 1;
+  min-width: 500px;
+}
+
+.panel-busqueda mat-card,
+.panel-carrito mat-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buscador-full {
+  width: 100%;
+}
+
+.resultados {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.producto-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.producto-item:hover {
+  background-color: #e3f2fd;
+  border-color: #1976d2;
+}
+
+.producto-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-info .nombre {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.producto-info .categoria {
+  color: #666;
+  font-size: 12px;
+}
+
+.producto-precio {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.producto-precio .precio {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  color: #1976d2;
+}
+
+.producto-precio .stock {
+  font-size: 12px;
+  color: #666;
+}
+
+.add-icon {
+  color: #4caf50;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.sin-resultados {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* Carrito */
+.carrito-vacio {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.carrito-vacio mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+}
+
+.carrito-vacio .hint {
+  font-size: 12px;
+}
+
+.tabla-carrito {
+  width: 100%;
+}
+
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cantidad-control .cantidad {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.total-section {
+  padding: 20px 0;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.total-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+mat-card-actions {
+  padding: 16px !important;
+  gap: 10px;
+}
+
+mat-card-actions button {
+  margin-left: 10px;
+}

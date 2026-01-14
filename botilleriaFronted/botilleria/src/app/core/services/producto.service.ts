@@ -7,8 +7,12 @@ export interface Producto {
   nombre: string;
   categoria: string;
   precioVenta: number;
+  costoCompra: number;
   stock: number;
   stockCritico: number;
+  codigoBarra?: string;
+  fechaVencimiento?: Date;
+  activo: boolean;
 }
 
 @Injectable({
@@ -24,19 +28,26 @@ export class ProductoService {
     return this.http.get<Producto[]>(`${this.baseUrl}/Listar`);
   }
 
-  crear(prod: Producto): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Guardar`, prod);
-  }
+crear(model: Producto): Observable<boolean> {
+  return this.http.post<boolean>(`${this.baseUrl}/Guardar`, model);
+}
 
-  actualizar(id: number, prod: Producto): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, prod);
-  }
+editar(model: Producto): Observable<boolean> {
+  return this.http.put<boolean>(`${this.baseUrl}/EditarProducto`, model);
+}
+
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/Eliminar/${id}`);
   }
 
   obtenerPorId(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.baseUrl}/${id}`);
   }
+
+  descargarPDF(id: number): Observable<Blob> {
+ return this.http.get(`${this.baseUrl}/descargarpdf/${id}`, {
+    responseType: 'blob'
+  });
+}
 }
