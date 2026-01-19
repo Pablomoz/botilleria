@@ -1,0 +1,40 @@
+<div class="crear-cuenta-container">
+  <div class="crear-cuenta-box">
+
+    <h2>Crear Cuenta</h2>
+
+    <form [formGroup]="form" (ngSubmit)="crearCuenta()">
+
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="usuario@correo.cl">
+      <span class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        Ingresa un correo valido
+      </span>
+
+      <label>Contrasena</label>
+      <input type="password" formControlName="password" placeholder="Minimo 6 caracteres">
+      <span class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        La contrasena debe tener al menos 6 caracteres
+      </span>
+
+      <label>Confirmar Contrasena</label>
+      <input type="password" formControlName="confirmPassword" placeholder="Repite tu contrasena">
+      <span class="error" *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">
+        Confirma tu contrasena
+      </span>
+
+      <button type="submit" [disabled]="cargando || form.invalid">
+        {{ cargando ? 'Creando...' : 'Crear Cuenta' }}
+      </button>
+
+      <div class="error-box" *ngIf="errorMsg">{{ errorMsg }}</div>
+      <div class="success-box" *ngIf="exitoMsg">{{ exitoMsg }}</div>
+
+      <button type="button" class="btn-secondary" (click)="volver()">
+        Volver al Login
+      </button>
+
+    </form>
+
+  </div>
+</div>

@@ -157,3 +157,66 @@ mat-card-actions {
 mat-card-actions button {
   margin-left: 10px;
 }
+
+/* Metodo de pago */
+.metodo-pago-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.metodo-pago-section h4 {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-weight: 500;
+}
+
+.metodo-toggle {
+  width: 100%;
+}
+
+.metodo-toggle mat-button-toggle {
+  flex: 1;
+}
+
+.metodo-toggle mat-icon {
+  margin-right: 8px;
+}
+
+/* Formulario Tarjeta */
+.tarjeta-form {
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.tarjeta-form mat-form-field {
+  width: 100%;
+}
+
+.tarjeta-form .full-width {
+  width: 100%;
+}
+
+.tarjeta-row {
+  display: flex;
+  gap: 15px;
+}
+
+.tarjeta-row mat-form-field {
+  flex: 1;
+}
+
+.tarjeta-form ::ng-deep .mat-mdc-text-field-wrapper {
+  background: rgba(255,255,255,0.95) !important;
+}
+
+.tarjeta-form ::ng-deep .mdc-floating-label {
+  color: #333 !important;
+}
+
+.tarjeta-form ::ng-deep .mat-mdc-form-field-icon-suffix {
+  color: #1976d2;
+}

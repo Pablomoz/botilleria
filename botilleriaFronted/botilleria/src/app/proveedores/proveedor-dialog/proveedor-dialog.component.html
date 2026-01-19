@@ -5,11 +5,17 @@
     <mat-form-field appearance="outline">
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="nombre" required>
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre es requerido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>RUT</mat-label>
       <input matInput formControlName="rut" required placeholder="12.345.678-9">
+      <mat-error *ngIf="form.get('rut')?.hasError('required')">
+        El RUT es requerido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -20,6 +26,9 @@
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email">
+      <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Ingrese un email válido (ej: correo&#64;ejemplo.com)
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">

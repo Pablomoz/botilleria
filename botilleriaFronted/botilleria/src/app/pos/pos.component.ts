@@ -9,8 +9,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ProductoService, Producto } from '../core/services/producto.service';
 import { VentaService, Venta, VentaDetalle } from '../core/services/venta.service';
+
+interface DatosTarjeta {
+  numero: string;
+  vencimiento: string;
+  cvv: string;
+  nombre: string;
+}
 
 interface ItemCarrito {
   producto: Producto;
@@ -31,7 +39,8 @@ interface ItemCarrito {
     MatIconModule,
     MatTableModule,
     MatSnackBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonToggleModule
   ],
   templateUrl: './pos.component.html',
   styleUrls: ['./pos.component.css']
@@ -46,6 +55,15 @@ export class PosComponent implements OnInit {
   // Carrito
   carrito: ItemCarrito[] = [];
   displayedColumns = ['nombre', 'precio', 'cantidad', 'subtotal', 'acciones'];
+
+  // Metodo de pago
+  metodoPago: 'efectivo' | 'tarjeta' = 'efectivo';
+  tarjeta: DatosTarjeta = {
+    numero: '',
+    vencimiento: '',
+    cvv: '',
+    nombre: ''
+  };
 
   constructor(
     private productoService: ProductoService,
@@ -97,6 +115,9 @@ export class PosComponent implements OnInit {
       });
     }
 
+    // Reasignar array para que mat-table detecte los cambios
+    this.carrito = [...this.carrito];
+
     this.textoBusqueda = '';
     this.productosFiltrados = [];
   }
@@ -105,6 +126,7 @@ export class PosComponent implements OnInit {
     if (item.cantidad < item.producto.stock) {
       item.cantidad++;
       item.subtotal = item.cantidad * item.producto.precioVenta;
+      this.carrito = [...this.carrito];
     } else {
       this.snackBar.open('Stock insuficiente', 'Cerrar', { duration: 2000 });
     }
@@ -114,6 +136,7 @@ export class PosComponent implements OnInit {
     if (item.cantidad > 1) {
       item.cantidad--;
       item.subtotal = item.cantidad * item.producto.precioVenta;
+      this.carrito = [...this.carrito];
     }
   }
 
@@ -121,6 +144,7 @@ export class PosComponent implements OnInit {
     const index = this.carrito.indexOf(item);
     if (index > -1) {
       this.carrito.splice(index, 1);
+      this.carrito = [...this.carrito];
     }
   }
 
@@ -134,6 +158,39 @@ export class PosComponent implements OnInit {
 
   limpiarCarrito() {
     this.carrito = [];
+    this.metodoPago = 'efectivo';
+    this.tarjeta = { numero: '', vencimiento: '', cvv: '', nombre: '' };
+  }
+
+  // Formatear numero de tarjeta con espacios
+  formatearNumeroTarjeta(event: any) {
+    let valor = event.target.value.replace(/\s/g, '').replace(/\D/g, '');
+    let formateado = '';
+    for (let i = 0; i < valor.length && i < 16; i++) {
+      if (i > 0 && i % 4 === 0) formateado += ' ';
+      formateado += valor[i];
+    }
+    this.tarjeta.numero = formateado;
+  }
+
+  // Formatear vencimiento MM/AA
+  formatearVencimiento(event: any) {
+    let valor = event.target.value.replace(/\D/g, '');
+    if (valor.length >= 2) {
+      valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
+    }
+    this.tarjeta.vencimiento = valor;
+  }
+
+  // Validar datos de tarjeta
+  tarjetaValida(): boolean {
+    const numeroLimpio = this.tarjeta.numero.replace(/\s/g, '');
+    return (
+      numeroLimpio.length >= 15 &&
+      this.tarjeta.vencimiento.length === 5 &&
+      this.tarjeta.cvv.length >= 3 &&
+      this.tarjeta.nombre.trim().length > 0
+    );
   }
 
   procesarVenta() {

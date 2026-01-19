@@ -22,6 +22,15 @@ export interface VentaResponse {
   mensaje: string;
 }
 
+export interface ProductoEstadistica {
+  idProducto: number;
+  nombre: string;
+  categoria: string;
+  cantidadVendida: number;
+  totalVendido: number;
+  numeroVentas: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,5 +50,13 @@ export class VentaService {
 
   obtenerPorId(id: number): Observable<Venta> {
     return this.http.get<Venta>(`${this.baseUrl}/${id}`);
+  }
+
+  obtenerMasVendidos(top: number = 10): Observable<ProductoEstadistica[]> {
+    return this.http.get<ProductoEstadistica[]>(`${this.baseUrl}/MasVendidos?top=${top}`);
+  }
+
+  obtenerMenosVendidos(top: number = 10): Observable<ProductoEstadistica[]> {
+    return this.http.get<ProductoEstadistica[]>(`${this.baseUrl}/MenosVendidos?top=${top}`);
   }
 }

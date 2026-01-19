@@ -18,22 +18,22 @@
       </span>
 
       <button type="submit" [disabled]="cargando">Entrar</button>
- <!-- ❗❗ Si el usuario no existe, aparece este mensaje -->
-      <p class="error" *ngIf="usuarioNoExiste">
-        El usuario no existe. ¿Deseas crear tu contraseña?
-      </p>
+      <!-- Mensaje de error cuando usuario no existe -->
+      <div class="error-box" *ngIf="usuarioNoExiste">
+        El usuario no existe. ¿Deseas crear tu cuenta?
+      </div>
 
-      <!-- ❗❗ Botón para crear contraseña -->
+      <!-- Botón para crear contraseña -->
       <button
         *ngIf="usuarioNoExiste"
         type="button"
         (click)="CrearCuenta()"
       >
-        Crear Contraseña
+        Crear Cuenta
       </button>
 
-      <!-- Mensajes de error normales -->
-      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+      <!-- Mensaje de error cuando credenciales incorrectas -->
+      <div class="error-box" *ngIf="errorMsg">{{ errorMsg }}</div>
 
     </form>
 

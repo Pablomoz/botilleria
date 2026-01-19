@@ -33,7 +33,11 @@ export class LoginComponent {
 ValidarUsuario() {
   console.log("➡️ Método ValidarUsuario() fue llamado");
 
+  // Limpiar mensajes anteriores
+  this.errorMsg = "";
+  this.usuarioNoExiste = false;
   this.cargando = true;
+
   const datos = this.form.value;
 
   console.log("➡️ Datos enviados al backend:", datos);
@@ -50,20 +54,24 @@ ValidarUsuario() {
       }
 
       if (resp === "INCORRECTO") {
-        this.errorMsg = "Contraseña incorrecta";
+        this.errorMsg = "Contraseña incorrecta. Verifica tus credenciales.";
+        this.usuarioNoExiste = false;
         this.cargando = false;
         return;
       }
 
-      if (resp === true) {
+      if (resp === "OK") {
         this.router.navigate(['/dashboard']);
+        return;
       }
 
+      // Caso por defecto si la respuesta no es reconocida
+      this.errorMsg = "Error de autenticación. Intenta nuevamente.";
       this.cargando = false;
     },
     error: (err) => {
       console.log("❌ ERROR:", err);
-      this.errorMsg = "Error en el servidor";
+      this.errorMsg = "Error en el servidor. Intenta más tarde.";
       this.cargando = false;
     }
   });

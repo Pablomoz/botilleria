@@ -107,6 +107,51 @@
             <span class="total-label">TOTAL:</span>
             <span class="total-value">${{ total | number:'1.0-0' }}</span>
           </div>
+
+          <!-- Metodo de pago -->
+          <div class="metodo-pago-section">
+            <h4>Metodo de Pago</h4>
+            <mat-button-toggle-group [(ngModel)]="metodoPago" class="metodo-toggle">
+              <mat-button-toggle value="efectivo">
+                <mat-icon>payments</mat-icon> Efectivo
+              </mat-button-toggle>
+              <mat-button-toggle value="tarjeta">
+                <mat-icon>credit_card</mat-icon> Tarjeta
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <!-- Formulario Tarjeta de Credito -->
+          <div class="tarjeta-form" *ngIf="metodoPago === 'tarjeta'">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Numero de Tarjeta</mat-label>
+              <input matInput [(ngModel)]="tarjeta.numero" maxlength="19"
+                     placeholder="1234 5678 9012 3456"
+                     (input)="formatearNumeroTarjeta($event)">
+              <mat-icon matSuffix>credit_card</mat-icon>
+            </mat-form-field>
+
+            <div class="tarjeta-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Vencimiento</mat-label>
+                <input matInput [(ngModel)]="tarjeta.vencimiento" maxlength="5"
+                       placeholder="MM/AA"
+                       (input)="formatearVencimiento($event)">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>CVV</mat-label>
+                <input matInput [(ngModel)]="tarjeta.cvv" maxlength="4"
+                       placeholder="123" type="password">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre en la Tarjeta</mat-label>
+              <input matInput [(ngModel)]="tarjeta.nombre"
+                     placeholder="NOMBRE APELLIDO">
+            </mat-form-field>
+          </div>
         </div>
       </mat-card-content>
 
@@ -114,8 +159,10 @@
         <button mat-button color="warn" (click)="limpiarCarrito()">
           <mat-icon>clear</mat-icon> Limpiar
         </button>
-        <button mat-raised-button color="primary" (click)="procesarVenta()">
-          <mat-icon>point_of_sale</mat-icon> Procesar Venta
+        <button mat-raised-button color="primary" (click)="procesarVenta()"
+                [disabled]="metodoPago === 'tarjeta' && !tarjetaValida()">
+          <mat-icon>{{ metodoPago === 'tarjeta' ? 'credit_score' : 'point_of_sale' }}</mat-icon>
+          {{ metodoPago === 'tarjeta' ? 'Pagar con Tarjeta' : 'Procesar Venta' }}
         </button>
       </mat-card-actions>
     </mat-card>

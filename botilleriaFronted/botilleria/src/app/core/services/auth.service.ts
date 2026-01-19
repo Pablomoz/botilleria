@@ -12,7 +12,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
 ValidarUsuario(data: { email: string; password: string }) {
-  return this.http.post(`${this.apiUrl}Login/ValidarUsuario`, data);
+  return this.http.post(`${this.apiUrl}Login/ValidarUsuario`, data, { responseType: 'text' });
+}
+
+AgregarUsuario(data: { email: string; password: string }) {
+  return this.http.post(`${this.apiUrl}Login/AgregarUsuario`, data);
 }
 
 logout() {

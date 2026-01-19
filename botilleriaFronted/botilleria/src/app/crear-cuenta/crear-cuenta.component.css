@@ -1,4 +1,4 @@
-.login-container {
+.crear-cuenta-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,13 +6,18 @@
   background: #111;
 }
 
-.login-box {
+.crear-cuenta-box {
   width: 350px;
   background: #1a1a1a;
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 0 10px #ff00ff55;
   color: #fff;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 label {
@@ -29,6 +34,7 @@ input {
   border: 1px solid #444;
   background: #222;
   color: white;
+  box-sizing: border-box;
 }
 
 button {
@@ -48,6 +54,15 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  background: #444;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background: #555;
+}
+
 .error {
   color: #ff4444;
   font-size: 13px;
@@ -60,6 +75,17 @@ button:disabled {
   padding: 12px;
   margin-top: 15px;
   color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success-box {
+  background: #44ff4422;
+  border: 1px solid #44ff44;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 15px;
+  color: #6bff6b;
   font-size: 14px;
   text-align: center;
 }

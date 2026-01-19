@@ -1,0 +1,134 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.total-card {
+  background: #1976d2;
+  color: white;
+}
+
+.total-label {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.total-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+.sin-ventas,
+.sin-datos {
+  text-align: center;
+  padding: 60px;
+  color: #999;
+}
+
+.sin-ventas mat-icon,
+.sin-datos mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+}
+
+.sin-ventas .hint,
+.sin-datos .hint {
+  font-size: 12px;
+}
+
+/* Tabs */
+.tab-icon {
+  margin-right: 8px;
+}
+
+.tab-content {
+  padding: 20px 0;
+}
+
+/* Estadisticas */
+.estadisticas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.estadisticas-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.tabla-estadisticas {
+  width: 100%;
+}
+
+.posicion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.posicion.top-3 {
+  background: linear-gradient(135deg, #ffd700, #ffb300);
+  color: #333;
+}
+
+.posicion.warning {
+  background: #ffcdd2;
+  color: #c62828;
+}
+
+.producto-nombre {
+  font-weight: 500;
+}
+
+.categoria-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.cantidad-vendida {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.cantidad-vendida.zero {
+  color: #c62828;
+}
+
+.total-vendido {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .estadisticas-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
